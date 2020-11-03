@@ -13,9 +13,17 @@
     <div class="d-flex flex-column">
       <div id="selectarea" class="w-100 form-group">
           <ul>
-            <li><label><input name="datatype" type="radio" value="isPercents"> 今年の残り時間（％）</label></li>
-            <li><label><input name="datatype" type="radio" value="isDays"> 今年の残り日数（日）</label></li>
+            <li>今年の</li>
           </ul>
+          <ul>
+            <li><label><input name="datatype" type="radio" value="isPercents"> 残り時間（％）</label></li>
+            <li><label><input name="datatype" type="radio" value="isDays"> 残り日数（日）</label></li>
+            <li><label><input name="datatype" type="radio" value="isWeeks"> 残り週（週）</label></li>
+          </ul>
+      </div>
+
+      <div id="selectcolor" class="w-100 form-group">
+          <label><input name="datatype" type="checkbox" value="useWhiteColor"> 文字色を白にする</label>
       </div>
 
       <div id="desc" class="w-100">
