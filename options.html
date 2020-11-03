@@ -1,0 +1,29 @@
+<html>
+  <meta charset="utf-8"/>
+  <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="chrome/css/chrome_shared.css" rel="stylesheet" type="text/css">
+    <style>
+
+    </style>
+  </head>
+
+  <body>
+    <div class="d-flex flex-column">
+      <div id="selectarea" class="w-100 form-group">
+          <ul>
+            <li><label><input name="datatype" type="radio" value="isPercents"> 今年の残り時間（％）</label></li>
+            <li><label><input name="datatype" type="radio" value="isDays"> 今年の残り日数（日）</label></li>
+          </ul>
+      </div>
+
+      <div id="desc" class="w-100">
+        今年の時間が後どれくらい残っているかをChrome上で表示します。
+      </div>
+    </div>
+  <div id="loading"></div>
+  <script src="options.js"></script>
+
+  </body>
+</html>

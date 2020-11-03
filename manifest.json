@@ -1,0 +1,16 @@
+{
+  "background": {
+    "scripts": ["background.js"],
+    "css": ["css/style.css", "css/bootstrap.min.css"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "options.html"
+  },
+  "description": "It shows you how many percent of the year is left to go.",
+  "manifest_version": 2,
+  "options_page": "options.html",
+  "name": "Time left",
+  "permissions": ["alarms", "storage"],
+  "version": "1"
+}
