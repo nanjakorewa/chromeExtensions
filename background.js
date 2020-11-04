@@ -20,12 +20,23 @@ function createIcon(hours, fontColor) {
 }
 
 function update() {
-  var now = new Date();
-  var start = new Date(now.getFullYear(), 0, 0);
-  var diffTime = now - start;
   var oneDay = 1000 * 60 * 60 * 24;
   var fontColor = "black";
+  var diffTime = 0;
 
+  // 時間差の計算
+  chrome.storage.sync.get(['calcFromDay', 'calcBaseDay'], function(settings) {
+    if(settings.calcFromDay){
+      var dayfrom = new Date();
+      var dayto = new Date(settings.calcBaseDay);
+      diffTime = dayto - dayfrom;
+    }
+    else {
+      var dayfrom = new Date();
+      var dayto = new Date(dayfrom.getFullYear()+1, 0, 0);
+      diffTime = dayto - dayfrom;
+    };
+  });
   // 背景色の設定
   chrome.browserAction.setBadgeBackgroundColor({color: '#222'});
   // 文字色の設定
@@ -35,29 +46,45 @@ function update() {
   // 残り％が選択されている時
   chrome.storage.sync.get('isPercents', function(settings) {
     if(settings.isPercents) {
-      var diff = Math.floor((365.0 - diffTime / oneDay) * 100.0 / 365.0);
+      var diff = Math.floor((diffTime / oneDay) * 100.0 / 365.0);
       var timeUnit = "%";
-      chrome.browserAction.setBadgeText({text: "残り" + String(timeUnit)});
+      if(diff < 0){
+        diff = -1 * diff;
+        chrome.browserAction.setBadgeText({text: String(timeUnit) + "経過"});
+      }
+      else {
+        chrome.browserAction.setBadgeText({text: "残り" + String(timeUnit)});
+      }
       chrome.browserAction.setIcon({imageData: createIcon(diff, fontColor)});
     }
   });
   // 残り日数が選択されている時
   chrome.storage.sync.get('isDays', function(settings) {
     if(settings.isDays) {
-      var diff = Math.floor((366.0 - diffTime / oneDay));
+      var diff = Math.floor((diffTime / oneDay));
       var timeUnit = "日";
-      if(settings.useWhiteColor) fontColor = "white";
-      chrome.browserAction.setBadgeText({text: "残り" + String(timeUnit)});
+      if(diff < 0){
+        diff = -1 * diff;
+        chrome.browserAction.setBadgeText({text: String(timeUnit) + "経過"});
+      }
+      else {
+        chrome.browserAction.setBadgeText({text: "残り" + String(timeUnit)});
+      }
       chrome.browserAction.setIcon({imageData: createIcon(diff, fontColor)});
     }
   });
   // 残り時間が選択されている時
   chrome.storage.sync.get('isWeeks', function(settings) {
     if(settings.isWeeks) {
-      var diff = Math.floor((366.0 - diffTime / oneDay) / 7);
+      var diff = Math.floor((diffTime / oneDay) / 7);
       var timeUnit = "週";
-      if(settings.useWhiteColor) fontColor = "white";
-      chrome.browserAction.setBadgeText({text: "残り" + String(timeUnit)});
+      if(diff < 0){
+        diff = -1 * diff;
+        chrome.browserAction.setBadgeText({text: String(timeUnit) + "経過"});
+      }
+      else {
+        chrome.browserAction.setBadgeText({text: "残り" + String(timeUnit)});
+      }
       chrome.browserAction.setIcon({imageData: createIcon(diff, fontColor)});
     }
   });

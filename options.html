@@ -22,8 +22,12 @@
           </ul>
       </div>
 
-      <div id="selectcolor" class="w-100 form-group">
+      <div id="settingoption" class="w-100 form-group">
           <label><input name="datatype" type="checkbox" value="useWhiteColor"> 文字色を白にする</label>
+          <label><input name="datatype" type="checkbox" value="calcFromDay" id="calcFromDay"> 特定の日時までの残り時間を測る</label>
+          <div id="selectdayarea">
+              <input type="date" style="width:150px;">
+          </div>
       </div>
 
       <div id="desc" class="w-100">
@@ -35,6 +39,5 @@
     </div>
   <div id="loading"></div>
   <script src="main.js"></script>
-
   </body>
 </html>
