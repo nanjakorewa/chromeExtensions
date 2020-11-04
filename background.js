@@ -2,9 +2,12 @@
 
 function createIcon(hours, fontColor) {
   function createCanvas(iconsize, fontColor) {
+    // 時間表示領域のサイズ
     var canvas = document.createElement('canvas');
     canvas.setAttribute('width', iconsize);
     canvas.setAttribute('height', iconsize);
+
+    // 残り時間の設定
     var context = canvas.getContext('2d');
     context.font = 'bold ' + (iconsize * 0.7) + 'px \'Meirio\', \'Ubuntu\', \'Lucida Grande\',';
     context.textAlign = 'center';

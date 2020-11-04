@@ -13,7 +13,12 @@ div#desc {
 }
 
 div#selectcolor {
+    font-size: 0.9em;
+}
+
+div#bugreport {
     font-size: 0.8em;
+    text-align: right;
 }
 
 ul, ol {
