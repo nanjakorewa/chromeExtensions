@@ -10,10 +10,15 @@ body {
 
 div#desc {
     font-size: 0.8em;
+    color: #aaa;
 }
 
 div#selectcolor {
     font-size: 0.9em;
+}
+
+div#settingoption {
+    font-size: 0.8em;
 }
 
 div#bugreport {

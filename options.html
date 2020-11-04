@@ -13,9 +13,6 @@
     <div class="d-flex flex-column">
       <div id="selectarea" class="w-100 form-group">
           <ul>
-            <li>今年の</li>
-          </ul>
-          <ul>
             <li><label><input name="datatype" type="radio" value="isPercents"> 残り時間（％）</label></li>
             <li><label><input name="datatype" type="radio" value="isDays"> 残り日数（日）</label></li>
             <li><label><input name="datatype" type="radio" value="isWeeks"> 残り週（週）</label></li>
@@ -26,12 +23,13 @@
           <label><input name="datatype" type="checkbox" value="useWhiteColor"> 文字色を白にする</label>
           <label><input name="datatype" type="checkbox" value="calcFromDay" id="calcFromDay"> 特定の日時までの残り時間を測る</label>
           <div id="selectdayarea">
-              <input type="date" style="width:150px;">
+              <input type="date" style="width:150px;"> までの残り時間
           </div>
       </div>
-
       <div id="desc" class="w-100">
+        <br />
         今年の時間が後どれくらい残っているかをChrome上で表示します。
+        「特定の日時までの残り時間を測る」にチェックを入れると、その日付までの残り時間を表示します。
       </div>
       <div id="bugreport" class="w-100">
         <a href="https://github.com/Y-kyoto/ShowRemTimes" target="_blank">要望・バグ報告</a>
