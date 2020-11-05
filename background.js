@@ -29,7 +29,7 @@ function update() {
     if(settings.calcFromDay){
       var dayfrom = new Date();
       var dayto = new Date(settings.calcBaseDay);
-      diffTime = dayto - dayfrom + oneDay;
+      if(!isNaN(dayto)) diffTime = dayto - dayfrom + oneDay;
     }
     else {
       var dayfrom = new Date();
@@ -53,7 +53,7 @@ function update() {
         chrome.browserAction.setBadgeText({text: String(timeUnit) + "経過"});
       }
       else {
-        chrome.browserAction.setBadgeText({text: "残り" + String(timeUnit)});
+        chrome.browserAction.setBadgeText({text: "残" + String(timeUnit)});
       }
       chrome.browserAction.setIcon({imageData: createIcon(diff, fontColor)});
     }
@@ -68,7 +68,7 @@ function update() {
         chrome.browserAction.setBadgeText({text: String(timeUnit) + "経過"});
       }
       else {
-        chrome.browserAction.setBadgeText({text: "残り" + String(timeUnit)});
+        chrome.browserAction.setBadgeText({text: "残" + String(timeUnit)});
       }
       chrome.browserAction.setIcon({imageData: createIcon(diff, fontColor)});
     }
@@ -83,7 +83,7 @@ function update() {
         chrome.browserAction.setBadgeText({text: String(timeUnit) + "経過"});
       }
       else {
-        chrome.browserAction.setBadgeText({text: "残り" + String(timeUnit)});
+        chrome.browserAction.setBadgeText({text: "残" + String(timeUnit)});
       }
       chrome.browserAction.setIcon({imageData: createIcon(diff, fontColor)});
     }
