@@ -29,7 +29,7 @@ function update() {
     if(settings.calcFromDay){
       var dayfrom = new Date();
       var dayto = new Date(settings.calcBaseDay);
-      diffTime = dayto - dayfrom;
+      diffTime = dayto - dayfrom + oneDay;
     }
     else {
       var dayfrom = new Date();
