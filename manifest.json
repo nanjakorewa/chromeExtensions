@@ -20,5 +20,5 @@
   "options_page": "options.html",
   "name": "今年は後何日？",
   "permissions": ["alarms", "storage"],
-  "version": "1"
+  "version": "2"
 }
