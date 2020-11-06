@@ -4,14 +4,16 @@ chrome.storage.sync.get('useWhiteColor', function(settings) {
 });
 
 var listIsInline = false;
-chrome.storage.sync.get('listInline', function(settings) {
-  if(settings.listInline) listIsInline = true;
-});
-
 var areaType = "top";
 chrome.storage.sync.get('areaType', function(settings) {
   if(settings.areaType) areaType = settings.areaType;
+  listIsInline = (areaType=='top' || areaType=='bottom');
 });
+
+// TODO: 機能を一旦ドロップ
+// chrome.storage.sync.get('listInline', function(settings) {
+//   if(settings.listInline) listIsInline = true;
+// });
 
 $(function() {
   menuNameUrlList = {
@@ -56,14 +58,15 @@ $(function() {
     div.prependTo('body');
   }
   else if (areaType=='right'){
+    div.addClass('right-menu-X46fdd55eX3d96');
     $('#root').prepend(div);
   }
   else if (areaType=='bottom'){
     div.addClass('bottom-menu-X46fdd55eX3d96');
     $('#root').prepend(div);
   }
-  else if (areaType=='top'){
+  else if (areaType=='left'){
+    div.addClass('left-menu-X46fdd55eX3d96');
     $('#root').prepend(div);
   }
-  window.alert(areaType);
 });

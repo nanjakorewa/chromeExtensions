@@ -13,7 +13,6 @@ areaType.onchange = function() {
 optionSettingArea.onchange = function() {
   chrome.storage.sync.set({
     useWhiteColor: useWhiteColor.checked,
-    listInline: listInline.checked,
   });
 };
 
@@ -24,7 +23,4 @@ chrome.storage.sync.get('areaType', function(settings) {
 });
 chrome.storage.sync.get('useWhiteColor', function(settings) {
   useWhiteColor.checked = !!settings.useWhiteColor;
-});
-chrome.storage.sync.get('listInline', function(settings) {
-  listInline.checked = !!settings.listInline;
 });
