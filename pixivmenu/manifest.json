@@ -1,0 +1,27 @@
+{
+  "content_scripts":[
+    {
+      "matches":[
+        "https://www.pixiv.net/*"
+      ],
+      "js":[
+        "jquery-3.4.0.min.js",
+        "main.js"
+      ],
+      "css": [
+        "css/menu.css",
+        "css/bootstrap.min.css"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icon/16.png",
+    "48": "icon/48.png",
+    "128": "icon/128.png"
+  },
+  "description": "pixivのメニュー表示を変更するための拡張機能です。",
+  "manifest_version": 2,
+  "name": "pixivのメニュー表示を変更する",
+  "permissions": ["storage", "activeTab"],
+  "version": "1"
+}
