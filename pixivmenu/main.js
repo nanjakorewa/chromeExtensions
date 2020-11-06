@@ -1,3 +1,13 @@
+var bgColor = "bg-black";
+chrome.storage.sync.get('useWhiteColor', function(settings) {
+  if(settings.useWhiteColor) bgColor = "bg-white";
+});
+
+var listIsInline = false;
+chrome.storage.sync.get('listInline', function(settings) {
+  if(settings.listInline) listIsInline = true;
+});
+
 $(function() {
   menuNameUrlList = {
 //		"ホーム": "/",
@@ -19,13 +29,20 @@ $(function() {
 //		"ディスカバリー": "/discovery",
 //		"ランキング": "/ranking.php",
   };
-  // UUID, 既存cssとの名前の衝突を避ける
-  var uuid = 'X46fdd55eX3d96Xa49bX3cf3X044bce140761X';
 
-  // メニュー領域の追加
-  divArea = $('<div>', { id:'additional-menu-X46fdd55eX3d96Xa49bX3cf3X044bce140761X' });
+  // メニュー領域のクラス設定
+  ul = listIsInline ? $('<ul>', { class:'list-inline'}) : $('<ul>', { class:'list-group'});
+
+  // inner html
   for (let [key, value] of Object.entries(menuNameUrlList)) {
-    divArea.append('<li><a href="' + value + '">' + key + '</a></li>');
+    li = listIsInline ?  $('<li>', { class:'list-inline-item' }) : $('<li>', { class:'list-group-item' });
+    li.append('<a href="' + value + '">' + key + '</a>');
+    ul.append(li);
   }
-  $( "body" ).append(divArea);
+
+  // uuid, 既存cssとの名前の衝突を避けるため
+  var uuid = 'X46fdd55eX3d96Xa49bX3cf3X044bce140761X';
+  div = $('<div>', { id:uuid }).append(ul);
+  div.addClass(bgColor);
+  $('body').append(div);
 });

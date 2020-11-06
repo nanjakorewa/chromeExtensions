@@ -3,13 +3,53 @@
   <head>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href="chrome/css/chrome_shared.css" rel="stylesheet" type="text/css">
     <style>
 
     </style>
   </head>
 
   <body>
-    test
+    <div class="d-flex flex-column">
+      <div id="selectarea" class="w-100 form-group">
+        <h4>表示位置</h4>
+        <ul>
+          <li><label><input name="areatype" type="radio" value="top">ページ上</label></li>
+          <li><label><input name="areatype" type="radio" value="right">ページ右</label></li>
+          <li><label><input name="areatype" type="radio" value="bottom">ページ下</label></li>
+          <li><label><input name="areatype" type="radio" value="left">ページ左</label></li>
+          <li><label><input name="areatype" type="checkbox" value="alwaysFix">表示を常に固定する</label></li>
+        </ul>
+      </div>
+
+      <div class="d-flex flex-column">
+        <div id="settingoption" class="w-100 form-group">
+          <h4>表示色・サイズ</h4>
+          <ul>
+            <li><label><input name="datatype" type="checkbox" value="useWhiteColor"> 文字色を白にする</label></li>
+            <li><label><input name="datatype" type="checkbox" value="listInline"> メニューを横並びにする</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column">
+        <div id="ibs" class="w-100 form-group">
+          <h4>いいねブクマシェア</h4>
+          <span class="desc">いいねしながら公開ブックマークしてtwitterにシェアするボタンを表示します。</span>
+          <ul>
+            <li><label><input name="ibstype" type="checkbox" value="ibsHidden"> 非公開ブックマークとして保存する</label></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="desc" class="w-100">
+        <br />
+        pixivのメニューの表示位置を調整する非公式のchrome拡張です。
+        入力されたデータやブックマークの内容は外部には送信されません。
+        <div id="bugreport" class="w-100">
+          <a href="https://github.com/Y-kyoto/chromeExtensions" target="_blank">要望・バグ報告</a>
+        </div>
+      </div>
+    </div>
+    <script src="option.js"></script>
   </body>
 </html>

@@ -1,11 +1,21 @@
-div#additional-menu-X46fdd55eX3d96Xa49bX3cf3X044bce140761X {
+div#X46fdd55eX3d96Xa49bX3cf3X044bce140761X {
     position: fixed;
     top: 10px;
     right: 0px;
-    font-size: 2em;
+    font-size: 1em;
 }
 
-div#additional-menu-X46fdd55eX3d96Xa49bX3cf3X044bce140761X > li {
+div#X46fdd55eX3d96Xa49bX3cf3X044bce140761X > li {
     padding: 0;
     list-style-type: none!important;
+}
+
+div#X46fdd55eX3d96Xa49bX3cf3X044bce140761X.bg-white {
+    background-color: #fff;
+    color: #000;
+}
+
+div#X46fdd55eX3d96Xa49bX3cf3X044bce140761X.bg-black {
+    background-color: #000;
+    color: #fff;
 }
