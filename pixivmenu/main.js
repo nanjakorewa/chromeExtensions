@@ -8,6 +8,11 @@ chrome.storage.sync.get('listInline', function(settings) {
   if(settings.listInline) listIsInline = true;
 });
 
+var areaType = "top";
+chrome.storage.sync.get('areaType', function(settings) {
+  if(settings.areaType) areaType = settings.areaType;
+});
+
 $(function() {
   menuNameUrlList = {
 //		"ホーム": "/",
@@ -44,5 +49,21 @@ $(function() {
   var uuid = 'X46fdd55eX3d96Xa49bX3cf3X044bce140761X';
   div = $('<div>', { id:uuid }).append(ul);
   div.addClass(bgColor);
-  $('body').append(div);
+
+  // areaType設定にしたがってメニューを表示する
+  if(areaType=='top'){
+    div.addClass('top-menu-X46fdd55eX3d96');
+    div.prependTo('body');
+  }
+  else if (areaType=='right'){
+    $('#root').prepend(div);
+  }
+  else if (areaType=='bottom'){
+    div.addClass('bottom-menu-X46fdd55eX3d96');
+    $('#root').prepend(div);
+  }
+  else if (areaType=='top'){
+    $('#root').prepend(div);
+  }
+  window.alert(areaType);
 });

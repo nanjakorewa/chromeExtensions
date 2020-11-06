@@ -1,8 +1,5 @@
 div#X46fdd55eX3d96Xa49bX3cf3X044bce140761X {
-    position: fixed;
-    top: 10px;
-    right: 0px;
-    font-size: 1em;
+    z-index: 10000;
 }
 
 div#X46fdd55eX3d96Xa49bX3cf3X044bce140761X > li {
@@ -19,3 +16,17 @@ div#X46fdd55eX3d96Xa49bX3cf3X044bce140761X.bg-black {
     background-color: #000;
     color: #fff;
 }
+
+div.top-menu-X46fdd55eX3d96 > ul {
+    margin-left: 10%;
+    font-size: 1.2em;
+}
+
+div.bottom-menu-X46fdd55eX3d96 > ul {
+    z-index: 1000000;
+    margin: 0 10%;
+    font-size: 1.2em;
+    position: fixed;
+    bottom: 0;
+}
+

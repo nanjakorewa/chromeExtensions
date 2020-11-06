@@ -11,6 +11,12 @@
   <body>
     <div class="d-flex flex-column">
       <div id="selectarea" class="w-100 form-group">
+        <h4>ユーザーID</h4>
+          <input type="number" id="userid" name="userid" maxlength="10"></textarea>
+          <span class="desc">「https://www.pixiv.net/users/○○○」の「○○○」を指定してください</span>
+        </div>
+
+      <div id="areatype" class="w-100 form-group">
         <h4>表示位置</h4>
         <ul>
           <li><label><input name="areatype" type="radio" value="top">ページ上</label></li>
@@ -34,7 +40,7 @@
       <div class="d-flex flex-column">
         <div id="ibs" class="w-100 form-group">
           <h4>いいねブクマシェア</h4>
-          <span class="desc">いいねしながら公開ブックマークしてtwitterにシェアするボタンを表示します。</span>
+          <span class="desc">いいねしながら公開ブックマークしてtwitterにシェアするボタンを表示します</span>
           <ul>
             <li><label><input name="ibstype" type="checkbox" value="ibsHidden"> 非公開ブックマークとして保存する</label></li>
           </ul>
