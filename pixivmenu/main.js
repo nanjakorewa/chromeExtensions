@@ -58,6 +58,14 @@ $(function() {
     ul.append(li);
   }
 
+  // 表示の調整のため横並びの場合はひとつ要素を追加
+  if(listIsInline){
+    li = $('<li>', { class:'col-sm-2 pl-0 pr-0' });
+    li.append('<a href="#"></a>');
+    li.addClass(bgColor);
+    ul.append(li);
+  }
+
   // uuid, 既存cssとの名前の衝突を避けるため
   var uuid = 'X46fdd55eX3d96Xa49bX3cf3X044bce140761X';
   if(listIsInline){
