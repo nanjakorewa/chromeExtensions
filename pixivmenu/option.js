@@ -33,5 +33,5 @@ chrome.storage.sync.get('areaType', function(settings) {
     document.querySelector('input[value="'+checkedValue+'"]').checked = true;
 });
 chrome.storage.sync.get('userId', function(settings) {
-  userId.value = !!settings.userId;
+  userId.value = settings.userId;
 });
