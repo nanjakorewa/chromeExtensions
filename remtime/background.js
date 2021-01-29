@@ -27,13 +27,15 @@ function update() {
   // 時間差の計算
   chrome.storage.sync.get(['calcFromDay', 'calcBaseDay'], function(settings) {
     if(settings.calcFromDay){
+      // カレンダーから指定
       var dayfrom = new Date();
       var dayto = new Date(settings.calcBaseDay);
       if(!isNaN(dayto)) diffTime = dayto - dayfrom + oneDay;
     }
     else {
+      // 年末までの日時を求める
       var dayfrom = new Date();
-      var dayto = new Date(dayfrom.getFullYear()+1, 0, 0);
+      var dayto = new Date(dayfrom.getFullYear()+1, 0, 1);
       diffTime = dayto - dayfrom;
     };
   });

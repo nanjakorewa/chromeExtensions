@@ -15,10 +15,10 @@
     "48": "icon/48.png",
     "128": "icon/128.png"
 },
-  "description": "今年の残り時間（残りの日数・残りの週数・残り％）をChromeタブに表示します。",
+  "description": "指定した日までの残り時間（残りの日数・残りの週数・残り％）をChromeタブに表示します。",
   "manifest_version": 2,
   "options_page": "options.html",
-  "name": "今年は後何日？",
+  "name": "指定した日まであと何日残ってる？",
   "permissions": ["alarms", "storage"],
-  "version": "2.0.1"
+  "version": "2.0.2"
 }
