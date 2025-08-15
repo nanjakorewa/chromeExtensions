@@ -1,0 +1,106 @@
+﻿:root {
+  --bar-fg: #0b1220;
+  --bar-bg: rgba(255, 255, 255, 0.55);
+  --bar-border: rgba(255, 255, 255, 0.8);
+  --bar-shadow: 0 8px 28px rgba(0,0,0,.18);
+  --bar-radius: 14px;
+  --bar-opacity: 1;
+  --bar-font: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  --accent: #60a5fa;
+}
+
+html.dark .__leftdays-bar,
+.__leftdays-theme-dark .__leftdays-bar {
+  --bar-fg: #e2e8f0;
+  --bar-bg: rgba(15, 23, 42, 0.55);
+  --bar-border: rgba(148, 163, 184, 0.35);
+  --bar-shadow: 0 10px 32px rgba(0,0,0,.35);
+  --accent: #93c5fd;
+}
+
+.__leftdays-root {
+  position: fixed;
+  left: 0; right: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+}
+
+.__leftdays-root.__pos-top    { top: 0; }
+.__leftdays-root.__pos-bottom { bottom: 0; }
+
+.__leftdays-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.__leftdays-bar {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--bar-fg);
+  background: var(--bar-bg);
+  border: 1px solid var(--bar-border);
+  box-shadow: var(--bar-shadow);
+  border-radius: var(--bar-radius);
+  padding: 10px 16px;
+  font-family: var(--bar-font);
+  font-weight: 700;
+  line-height: 1;
+  opacity: var(--bar-opacity);
+  transform: translateZ(0);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+}
+
+.__leftdays-chip {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .2px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.__leftdays-chip .__num {
+  font-size: 18px;
+}
+.__leftdays-size-s .__num { font-size: 14px; }
+.__leftdays-size-l .__num { font-size: 24px; }
+
+.__leftdays-chip .__unit {
+  opacity: .75;
+  font-size: 12px;
+}
+
+.__leftdays-chip.__timer .__num {
+  font-feature-settings: "tnum";
+  font-size: 18px;
+}
+.__leftdays-size-l .__timer .__num { font-size: 24px; }
+
+.__sep {
+  width: 1px; height: 18px; opacity: .25; background: currentColor;
+}
+
+.__leftdays-btn {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: rgba(255,255,255,.2);
+  color: inherit;
+  cursor: pointer;
+  font-weight: 700;
+}
+.__leftdays-btn:hover { background: rgba(255,255,255,.3); }
+
+.__leftdays-hide {
+  opacity: .85;
+}
+.__leftdays-chip.__label .__num {
+  font-size: 18px;
+}
+.__leftdays-size-l .__leftdays-chip.__label .__num {
+  font-size: 24px;
+}

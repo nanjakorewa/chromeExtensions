@@ -1,68 +1,123 @@
 'use strict';
-// ----------------------------------------
-var radioSelectType = document.querySelector('div[id=selectarea]');
-var optionSettingArea = document.querySelector('div[id=settingoption]');
-var cldArea = document.querySelector('input[type=date]');
 
-var isDays = document.querySelector('input[value=isDays]');
-var isPercents = document.querySelector('input[value=isPercents]');
-var isWeeks = document.querySelector('input[value=isWeeks]');
-var useWhiteColor = document.querySelector('input[value=useWhiteColor]');
-var calcFromDay = document.querySelector('input[value=calcFromDay]');
-// ----------------------------------------
-chrome.storage.sync.get('isDays', function(settings) {
-  isDays.checked = !!settings.isDays;
-  document.querySelector('#loading').setAttribute('done', 'true');
-});
-chrome.storage.sync.get('isPercents', function(settings) {
-  isPercents.checked = !!settings.isPercents;
-  document.querySelector('#loading').setAttribute('done', 'true');
-});
-chrome.storage.sync.get('isWeeks', function(settings) {
-  isWeeks.checked = !!settings.isWeeks;
-  document.querySelector('#loading').setAttribute('done', 'true');
-});
-chrome.storage.sync.get('useWhiteColor', function(settings) {
-  useWhiteColor.checked = !!settings.useWhiteColor;
-  document.querySelector('#loading').setAttribute('done', 'true');
-});
-chrome.storage.sync.get('calcFromDay', function(settings) {
-  calcFromDay.checked = !!settings.calcFromDay;
-  document.querySelector('#loading').setAttribute('done', 'true');
-});
-chrome.storage.sync.get('calcBaseDay', function(settings) {
-  cldArea.value = settings.calcBaseDay;
-});
+// ===== Schema (default settings) =====
+const schema = {
+  // Units
+  isPercents: false,
+  isDays: true,
+  isWeeks: false,
 
-chrome.storage.onChanged.addListener(function(changes) {
-  if(changes.isDays){
-    isDays.checked = changes.isDays.newValue;
-  }
-  if(changes.isPercents){
-    isPercents.checked = changes.isPercents.newValue;
-  }
-  if(changes.isWeeks){
-    isWeeks.checked = changes.isWeeks.newValue;
-  }
-  if(changes.useWhiteColor){
-    useWhiteColor.checked = changes.useWhiteColor.newValue;
-  }
-  if(changes.calcFromDay){
-    calcFromDay.checked = changes.calcFromDay.newValue;
-  }
+  // Base
+  calcFromDay: false,
+  calcBaseDay: null,
+
+  // Icon (badge)
+  useWhiteColor: false,
+
+  // Overlay
+  overlayEnabled: false,
+  overlayPosition: 'top',   // 'top' | 'bottom'
+  overlaySize: 'm',         // 's' | 'm' | 'l'
+  overlayTheme: 'system',   // 'light' | 'dark' | 'system'
+  overlayOpacity: 1,
+  overlayClickAction: 'none', // kept for compatibility, not used
+  hideOnDomains: '',
+
+  // New: D日 HH:MM:SS
+  overlayShowHMS: false
+};
+
+// ===== Helpers =====
+const $ = (id) => document.getElementById(id);
+const toggles = [
+  'isPercents',
+  'isDays',
+  'isWeeks',
+  'calcFromDay',
+  'useWhiteColor',
+  'overlayEnabled',
+  'overlayShowHMS'
+];
+
+function setToggle(id, on) {
+  const el = $(id);
+  if (!el) return;
+  el.classList.toggle('on', !!on);
+  el.dataset.value = on ? '1' : '0';
+}
+function getToggle(id) {
+  const el = $(id);
+  return el ? (el.dataset.value === '1') : false;
+}
+
+// ===== Load/Save =====
+function load() {
+  chrome.storage.sync.get(Object.keys(schema), (items) => {
+    const s = Object.assign({}, schema, items || {});
+    toggles.forEach(t => setToggle(t, !!s[t]));
+
+    $('calcBaseDay').value = s.calcBaseDay ? String(s.calcBaseDay).slice(0,10) : '';
+
+    $('overlayPosition').value = s.overlayPosition;
+    $('overlaySize').value = s.overlaySize;
+    $('overlayTheme').value = s.overlayTheme;
+    $('overlayOpacity').value = s.overlayOpacity;
+    $('hideOnDomains').value = s.hideOnDomains || '';
+  });
+}
+
+function save() {
+  const payload = {
+    isPercents: getToggle('isPercents'),
+    isDays: getToggle('isDays'),
+    isWeeks: getToggle('isWeeks'),
+
+    calcFromDay: getToggle('calcFromDay'),
+    calcBaseDay: $('calcBaseDay').value || null,
+
+    useWhiteColor: getToggle('useWhiteColor'),
+
+    overlayEnabled: getToggle('overlayEnabled'),
+    overlayPosition: $('overlayPosition').value,
+    overlaySize: $('overlaySize').value,
+    overlayTheme: $('overlayTheme').value,
+    overlayOpacity: Number($('overlayOpacity').value),
+    overlayClickAction: 'none',
+    hideOnDomains: $('hideOnDomains').value,
+
+    overlayShowHMS: getToggle('overlayShowHMS')
+  };
+
+  chrome.storage.sync.set(payload);
+}
+
+// ===== Init =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Toggle clicks
+  toggles.forEach(id => {
+    const el = $(id);
+    if (!el) return;
+    el.addEventListener('click', () => {
+      setToggle(id, !getToggle(id));
+      // Instant save for immediate feedback
+      save();
+    });
+  });
+
+  // Buttons
+  $('save').addEventListener('click', save);
+  $('reset').addEventListener('click', () => {
+    chrome.storage.sync.set(schema, load);
+  });
+
+  // Instant save on inputs
+  ['calcBaseDay','overlayPosition','overlaySize','overlayTheme','overlayOpacity','hideOnDomains']
+    .forEach(id => {
+      const el = $(id);
+      if (!el) return;
+      el.addEventListener('input', save);
+      el.addEventListener('change', save);
+    });
+
+  load();
 });
-// ----------------------------------------
-radioSelectType.onchange = function() {
-  chrome.storage.sync.set({
-    isDays: isDays.checked,
-    isPercents: isPercents.checked,
-    isWeeks: isWeeks.checked,
-  });
-};
-optionSettingArea.onchange = function() {
-  chrome.storage.sync.set({
-    useWhiteColor: useWhiteColor.checked,
-    calcFromDay: calcFromDay.checked,
-    calcBaseDay: document.querySelector('input[type="date"]').value,
-  });
-};

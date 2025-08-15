@@ -1,0 +1,16 @@
+﻿{
+  "manifest_version": 3,
+  "name": "DevTools検出ツール",
+  "version": "1.0.1",
+  "description": "DevToolsを閲覧しているときに注意バナーを表示します。データ収集は行わず、強制リロードもありません。",
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["lib/blinky.js", "content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "DevTools検出ツール"
+  }
+}
