@@ -1,8 +1,8 @@
 ﻿{
   "manifest_version": 3,
-  "name": "No Recommendations (YouTube + Twitter/X) + Keyword Mute",
+  "name": "X不快なコンテンツブロッカー",
   "version": "1.2.0",
-  "description": "Hide suggested content on YouTube and Twitter/X, and mute tweets containing specified keywords.",
+  "description": "YouTubeとTwitter/Xで不快なコンテンツを非表示にし、指定したキーワードを含むツイートをミュートします。",
   "icons": { "128": "icon128.png" },
   "permissions": ["storage"],
   "options_page": "options.html",
