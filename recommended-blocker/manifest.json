@@ -1,0 +1,23 @@
+﻿{
+  "manifest_version": 3,
+  "name": "No Recommendations (YouTube + Twitter/X) + Keyword Mute",
+  "version": "1.2.0",
+  "description": "Hide suggested content on YouTube and Twitter/X, and mute tweets containing specified keywords.",
+  "icons": { "128": "icon128.png" },
+  "permissions": ["storage"],
+  "options_page": "options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.youtube.com/*",
+        "*://m.youtube.com/*",
+        "*://twitter.com/*",
+        "*://x.com/*",
+        "*://mobile.twitter.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start"
+    }
+  ]
+}

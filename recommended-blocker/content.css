@@ -1,0 +1,122 @@
+﻿/* =========================================
+   YouTube: おすすめ・関連・ショート・エンドスクリーン等を非表示
+   ※ JS側でも同等の非表示処理をしていますが、CSSでも可能な範囲で抑止
+   ========================================= */
+
+/* Watch ページのサイド関連動画 */
+#related,
+ytd-watch-next-secondary-results-renderer,
+ytd-compact-radio-renderer,
+ytd-compact-video-renderer,
+ytd-compact-playlist-renderer {
+  display: none !important;
+}
+
+/* ホームのリッチグリッド（おすすめ一覧） */
+ytd-browse[page-subtype="home"] #contents,
+ytd-rich-grid-renderer,
+ytd-rich-grid-row,
+ytd-rich-item-renderer {
+  display: none !important;
+}
+
+/* Shorts 系 */
+ytd-reel-shelf-renderer,
+ytd-reel-video-renderer,
+ytd-reel-shelf-renderer[is-shorts] {
+  display: none !important;
+}
+
+/* 検索・チャンネル等の棚・カルーセル */
+ytd-shelf-renderer,
+ytd-horizontal-card-list-renderer,
+ytd-carousel-header-renderer {
+  display: none !important;
+}
+
+/* エンドスクリーン・ポーズ時オーバーレイ・自動再生「次へ」 */
+.ytp-endscreen-content,
+ytd-endscreen-renderer,
+.ytp-endscreen-previous,
+.ytp-endscreen-next,
+.ytp-endscreen-tiles,
+.ytp-pause-overlay,
+.ytp-pause-overlay-container,
+.ytp-autonav-endscreen-upnext-container,
+.ytp-upnext,
+.ytp-next-button {
+  display: none !important;
+}
+
+/* フィード上部のチップ（おすすめ復活を誘発しやすい） */
+#chips,
+ytd-feed-filter-chip-bar-renderer {
+  display: none !important;
+}
+
+/* JSが挿入する「Recommendations are hidden.」メッセージの体裁 */
+#no-reco-message,
+#no-reco-x-message {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 14px;
+  padding: 16px;
+  text-align: center;
+  opacity: 0.65;
+}
+
+/* =========================================
+   Twitter/X: ドライラン（非表示せずハイライト）用
+   - 対象要素（article[data-testid="tweet"]）に .no-reco-mute-preview を付与
+   - 疑似要素でなく “実体DOM(.no-reco-overlay)” を被せて安定表示
+   ========================================= */
+
+/* オーバーレイの基準にする（角丸はXのカードに合わせ気味。好みで調整可） */
+.no-reco-mute-preview{
+  position: relative !important;
+  border-radius: 12px;
+  overflow: visible !important;
+}
+.no-reco-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(225, 29, 72, 0.18);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2147483647;
+}
+/* ← ここを「固定文字列」から attr(data-label) に変更 */
+.no-reco-overlay::after{
+  content: attr(data-label); /* 例: "Keyword match (preview)" / "High like/RT ratio (preview)" */
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font: 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: rgba(225, 29, 72, 0.25);
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: #b91c1c;
+}
+
+/* =========================================
+   互換・保険（必要に応じて）
+   ========================================= */
+
+/* 何らかの理由で display:none を上書きされても非表示を維持 */
+[data-no-reco="1"] {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* ハイコントラスト環境やユーザーCSSとの競合を抑える微調整（任意） */
+@media (prefers-contrast: more) {
+  .no-reco-overlay {
+    background: rgba(225, 29, 72, 0.22);
+  }
+}
+
+/* ダークテーマ向け微調整（任意） */
+@media (prefers-color-scheme: dark) {
+  .no-reco-overlay {
+    background: rgba(225, 29, 72, 0.16);
+  }
+}
