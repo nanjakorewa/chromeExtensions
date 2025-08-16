@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <title>No-Reco — Settings</title>
+  <title>コンテンツ非表示ツール</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{
@@ -13,7 +13,7 @@
     }
     *{ box-sizing:border-box } html,body{ height:100% }
     body{
-      margin:0; font:14px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans JP", Meiryo, sans-serif;
+      margin:0; font:14px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans JP",Meiryo,sans-serif;
       background:
         radial-gradient(1200px 600px at 20% -10%, #e8f0ff 0, transparent 60%),
         radial-gradient(1000px 500px at 100% 0, #f1f5ff 0, transparent 60%),
@@ -43,7 +43,7 @@
     .switch input:checked + .track .thumb{ left:23px; background:linear-gradient(180deg,#fff,#eef2ff); }
 
     .row{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin:10px 0 4px; }
-    .kbd{ font:12px/1 Menlo, Consolas, ui-monospace; background:#f3f4f6; border:1px solid var(--border); padding:3px 6px; border-radius:6px; color:#334155; }
+    .kbd{ font:12px/1 Menlo,Consolas,ui-monospace; background:#f3f4f6; border:1px solid var(--border); padding:3px 6px; border-radius:6px; color:#334155; }
 
     textarea{
       width:100%; min-height:220px; resize:vertical;
@@ -80,8 +80,8 @@
         <rect x="3" y="4" width="8" height="6" rx="2" fill="#2563eb" opacity=".9"/>
         <rect x="13" y="14" width="8" height="6" rx="2" fill="#16a34a" opacity=".9"/>
       </svg>
-      <div>No-Reco — Settings</div>
-      <span class="badge">v1.5 (Light)</span>
+      <div>コンテンツ非表示ツール</div>
+      <span class="badge">v1.7 (Light)</span>
     </div>
   </div>
 
@@ -94,21 +94,12 @@
         </div>
       </div>
       <div class="card-bd">
-        <!-- YouTube toggle -->
-        <div class="row">
-          <label class="switch" title="YouTube のおすすめ（ホーム/関連/棚など）を隠す">
-            <input id="hideYouTubeRecs" type="checkbox" />
-            <div class="track"><div class="thumb"></div></div>
-            <div>YouTube のおすすめを非表示</div>
-          </label>
-        </div>
-
-        <!-- 高いいね比率フィルタ -->
+        <!-- いいね/RT 比率 -->
         <div class="row">
           <label class="switch" title="いいね数がRT数の100倍以上のツイートを自動で非表示（RT=0は1扱い）">
             <input id="hideHighLikeRatio" type="checkbox" />
             <div class="track"><div class="thumb"></div></div>
-            <div>いいね/RT 比率が極端なツイートを非表示（100×）</div>
+            <div>センシティブな漫画・画像の可能性がある投稿を非表示</div>
           </label>
         </div>
 
@@ -129,18 +120,18 @@
           <label class="switch"><input id="wholeWord" type="checkbox" />
             <div class="track"><div class="thumb"></div></div><div>単語全体にのみ一致</div></label>
           <label class="switch"><input id="useRegex" type="checkbox" />
-            <div class="track"><div class="thumb"></div></div><div>正規表現（ユーザー定義のみ）</div></label>
-          <label class="switch"><input id="matchHashtags" type="checkbox" checked />
+            <div class="track"><div class="thumb"></div></div><div>正規表現をつかう</div></label>
+          <label class="switch"><input id="matchHashtags" type="checkbox" />
             <div class="track"><div class="thumb"></div></div><div>ハッシュタグも対象</div></label>
           <label class="switch"><input id="dryRun" type="checkbox" />
-            <div class="track"><div class="thumb"></div></div><div>ドライラン（非表示せずハイライト）</div></label>
+            <div class="track"><div class="thumb"></div></div><div>非表示にする投稿をプレビューする</div></label>
           <span class="counter"><span id="kwCount">0</span> 行</span>
         </div>
 
         <textarea id="keywords" placeholder="1行に1つ。例:
 spoiler
 ネタバレ
-/geo(guess|guesser)/i  ← useRegex ON で正規表現
+/geo(guess|guesser)/i  ← 正規表現をつかう場合の入力例
 # 先頭が # の行と空行は無視されます"></textarea>
 
         <div class="hint" style="margin-top:6px">

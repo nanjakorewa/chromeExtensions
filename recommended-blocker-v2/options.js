@@ -1,7 +1,6 @@
 ﻿// Elements
 const els = {
   keywords: document.getElementById('keywords'),
-  hideYouTubeRecs: document.getElementById('hideYouTubeRecs'),
   hideHighLikeRatio: document.getElementById('hideHighLikeRatio'),
   usePresetAbusive: document.getElementById('usePresetAbusive'),
   usePresetSensitive: document.getElementById('usePresetSensitive'),
@@ -15,15 +14,15 @@ const els = {
   toast: document.getElementById('toast')
 };
 
+// 既定はすべてOFF
 const DEFAULTS = {
-  keywords: ['spoiler', 'ネタバレ'],
-  hideYouTubeRecs: true,
-  hideHighLikeRatio: true,    // デフォルトON
+  keywords: [],
+  hideHighLikeRatio: false,
   usePresetAbusive: false,
   usePresetSensitive: false,
   wholeWord: false,
   useRegex: false,
-  matchHashtags: true,
+  matchHashtags: false,
   dryRun: false
 };
 
@@ -41,8 +40,7 @@ async function restore(){
   const stored = await chrome.storage.sync.get({ muteConfig: DEFAULTS });
   const cfg = { ...DEFAULTS, ...(stored.muteConfig || {}) };
 
-  els.keywords.value = (cfg.keywords || []).join('\n');
-  els.hideYouTubeRecs.checked = !!cfg.hideYouTubeRecs;
+  els.keywords.value = Array.isArray(cfg.keywords) ? cfg.keywords.join('\n') : '';
   els.hideHighLikeRatio.checked = !!cfg.hideHighLikeRatio;
   els.usePresetAbusive.checked = !!cfg.usePresetAbusive;
   els.usePresetSensitive.checked = !!cfg.usePresetSensitive;
@@ -57,7 +55,6 @@ async function restore(){
 async function save(){
   const muteConfig = {
     keywords: parseKeywords(els.keywords.value),
-    hideYouTubeRecs: els.hideYouTubeRecs.checked,
     hideHighLikeRatio: els.hideHighLikeRatio.checked,
     usePresetAbusive: els.usePresetAbusive.checked,
     usePresetSensitive: els.usePresetSensitive.checked,

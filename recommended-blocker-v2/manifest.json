@@ -1,16 +1,14 @@
 ﻿{
   "manifest_version": 3,
   "name": "X不快なコンテンツブロッカー",
-  "version": "1.2.0",
-  "description": "YouTubeとTwitter/Xで不快なコンテンツを非表示にし、指定したキーワードを含むツイートをミュートします。",
+  "version": "1.8.0",
+  "description": "Twitter/Xで指定したキーワードを含む投稿をミュートし、任意で「いいね/RT 比率が極端」な投稿も抑制します。",
   "icons": { "128": "icon128.png" },
   "permissions": ["storage"],
   "options_page": "options.html",
   "content_scripts": [
     {
       "matches": [
-        "*://www.youtube.com/*",
-        "*://m.youtube.com/*",
         "*://twitter.com/*",
         "*://x.com/*",
         "*://mobile.twitter.com/*"
